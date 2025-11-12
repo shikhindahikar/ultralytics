@@ -290,9 +290,8 @@ def build_dataloader(
     rank: int = -1,
     drop_last: bool = False,
     pin_memory: bool = True,
-):
-    """
-    Create and return an InfiniteDataLoader or DataLoader for training or validation.
+) -> InfiniteDataLoader:
+    """Create and return an InfiniteDataLoader or DataLoader for training or validation.
 
     Args:
         dataset (Dataset): Dataset to load data from.
@@ -338,9 +337,10 @@ def build_dataloader(
     )
 
 
-def check_source(source):
-    """
-    Check the type of input source and return corresponding flag values.
+def check_source(
+    source: str | int | Path | list | tuple | np.ndarray | Image.Image | torch.Tensor,
+) -> tuple[Any, bool, bool, bool, bool, bool]:
+    """Check the type of input source and return corresponding flag values.
 
     Args:
         source (str | int | Path | list | tuple | np.ndarray | PIL.Image | torch.Tensor): The input source to check.
@@ -387,9 +387,14 @@ def check_source(source):
     return source, webcam, screenshot, from_img, in_memory, tensor
 
 
-def load_inference_source(source=None, batch: int = 1, vid_stride: int = 1, buffer: bool = False, channels: int = 3):
-    """
-    Load an inference source for object detection and apply necessary transformations.
+def load_inference_source(
+    source: str | int | Path | list | tuple | np.ndarray | Image.Image | torch.Tensor,
+    batch: int = 1,
+    vid_stride: int = 1,
+    buffer: bool = False,
+    channels: int = 3,
+):
+    """Load an inference source for object detection and apply necessary transformations.
 
     Args:
         source (str | Path | list | tuple | torch.Tensor | PIL.Image | np.ndarray): The input source for inference.

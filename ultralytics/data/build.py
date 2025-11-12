@@ -35,8 +35,7 @@ from ultralytics.utils.torch_utils import TORCH_2_0
 
 
 class InfiniteDataLoader(dataloader.DataLoader):
-    """
-    Dataloader that reuses workers for infinite iteration.
+    """Dataloader that reuses workers for infinite iteration.
 
     This dataloader extends the PyTorch DataLoader to provide infinite recycling of workers, which improves efficiency
     for training loops that need to iterate through the dataset multiple times without recreating workers.
@@ -94,8 +93,7 @@ class InfiniteDataLoader(dataloader.DataLoader):
 
 
 class _RepeatSampler:
-    """
-    Sampler that repeats forever for infinite iteration.
+    """Sampler that repeats forever for infinite iteration.
 
     This sampler wraps another sampler and yields its contents indefinitely, allowing for infinite iteration over a
     dataset without recreating the sampler.
@@ -115,8 +113,7 @@ class _RepeatSampler:
 
 
 class ContiguousDistributedSampler(torch.utils.data.Sampler):
-    """
-    Distributed sampler that assigns contiguous batch-aligned chunks of the dataset to each GPU.
+    """Distributed sampler that assigns contiguous batch-aligned chunks of the dataset to each GPU.
 
     Unlike PyTorch's DistributedSampler which distributes samples in a round-robin fashion (GPU 0 gets indices
     [0,2,4,...], GPU 1 gets [1,3,5,...]), this sampler gives each GPU contiguous batches of the dataset (GPU 0 gets
